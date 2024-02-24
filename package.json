@@ -1,0 +1,29 @@
+{
+  "name": "npm-react",
+  "version": "1.0.0",
+  "description": "this is a react project made by Shrey Singh",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrey3105/react-reference.git"
+  },
+  "author": "Shrey Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shrey3105/react-reference/issues"
+  },
+  "homepage": "https://github.com/shrey3105/react-reference#readme",
+  "devDependencies": {
+    "parcel": "^2.11.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 3 versions"
+  ]
+}
