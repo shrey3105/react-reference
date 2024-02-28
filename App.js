@@ -1,24 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const parent = React.createElement(
-    "div",
-    {id : 'parent'},
-    [React.createElement(
-        "div",
-        {id:'child1'},
-        [React.createElement("h1",{},"I am h1 tag"), React.createElement("h2",{},"I am h2 tag")]
-    ), React.createElement(
-        "div",
-        {id:'child2'},
-        [React.createElement("h1",{},"I am h1 tag"), React.createElement("h2",{},"I am h2 tag")]
-    )]
-)
+const ele = <span>hehe</span>;
 
-console.log(parent);
+const Title = () => (
+  <h1 className="title">
+    {ele}
+    React Title
+  </h1>
+);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const HeadingComponent = () => (
+  <div className="container">
+    <Title />
+    <p>
+      This is Component Description. Using Title component inside Heading
+      Component. This is also called Component Composition
+    </p>
+  </div>
+);
 
-console.log(root);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(parent);
+root.render(<HeadingComponent />);
