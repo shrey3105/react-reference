@@ -1,20 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-/*
-Header
-  => Logo
-  => Nav Items
-Body
-  => SearchBar
-  => Card Container
-     => Card
-Footer
-  => Copyright
-  => Links
-*/
-
-let restaurantsList = [
+export let restaurantsList = [
   {
     info: {
       id: "636723",
@@ -681,67 +665,3 @@ let restaurantsList = [
     widgetId: "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo",
   },
 ];
-
-const Header = () => (
-  <div className="header">
-    <div className="logo">
-      <img
-        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029845/PC_Creative%20refresh/3D_bau/banners_new/Burger.png"
-        className="logo-img"
-        alt="logo"
-      />
-    </div>
-
-    <ul className="nav-items">
-      <li>Home</li>
-      <li>About Us</li>
-      <li>Cart</li>
-    </ul>
-  </div>
-);
-
-const Card = ({ resData }) => {
-  const { name, cuisines, avgRating, cloudinaryImageId } = resData.info;
-  return (
-    <div className="res-card-container">
-      <div className="res-card">
-        <img
-          src={
-            "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-            cloudinaryImageId
-          }
-          alt="Image"
-        />
-        <h3>{name}</h3>
-        <h4>{cuisines.join(", ")}</h4>
-        <h4>{avgRating} stars</h4>
-      </div>
-    </div>
-  );
-};
-
-const Body = () => (
-  <div className="app-body">
-    <div className="search">
-      <input type="text" placeholder="Search your Cravings" />
-      <button>Search</button>
-    </div>
-
-    <div className="res-container">
-      {restaurantsList.map((restaurant) => {
-        return <Card key={restaurant.info.id} resData={restaurant} />;
-      })}
-    </div>
-  </div>
-);
-
-const AppLayout = () => (
-  <div className="app">
-    <Header />
-    <Body />
-  </div>
-);
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);
