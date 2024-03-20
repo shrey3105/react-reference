@@ -1,21 +1,30 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const arr = useState("login");
 
-  console.log(arr);
+  console.log("Header is Rendered");
 
   return (
     <div className="header">
       <div className="logo">
-        <img className="logo-img" src={LOGO_URL} alt="logo" />
+        <Link to="/">
+          <img className="logo-img" src={LOGO_URL} alt="logo" />
+        </Link>
       </div>
 
       <ul className="nav-items">
-        <li>Home</li>
-        <li>About Us</li>
-        <li>Cart</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About Us</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
         <button
           className="login-btn"
           onClick={() => {

@@ -30,3 +30,15 @@ There are two types of exports
     var => var is referred to as state variable and whenever it is updates, the component is re-rendered into the DOM
     setVar => this variable 'var' cannot be directly updated, to change it, useState provides us a second value in [var, setVar]
     on which if we pass the value, it gets updated and component is re-rendered;
+
+# Details related to useEffect
+
+useEffect(callback, [])
+here [] is the dependency array. THere are few cases in useEffect
+
+-useEffect(callback) => Now useEffect calls the callback function after every render of the component
+
+-useEffect(callback, []) => useEffect will call only on initial rendering of Component for the first time
+
+-useEffect(callback, [searchText]) => useEffect will call callback after initial load of component and everytime only after
+the dependency (searchText) changes
