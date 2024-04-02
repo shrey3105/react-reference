@@ -1,9 +1,12 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
   const arr = useState("login");
+
+  const onlineStatus = useOnlineStatus();
 
   console.log("Header is Rendered");
 
@@ -16,6 +19,7 @@ const Header = () => {
       </div>
 
       <ul className="nav-items">
+        <li>You are {onlineStatus ? "online" : "offline"}</li>
         <li>
           <Link to="/">Home</Link>
         </li>

@@ -1,40 +1,31 @@
 import Card from "./Card";
-import { restaurantsList } from "../utils/mockData";
-import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useRestuarantList from "../utils/useRestaurantList";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
-  const [resList, setResList] = useState([]);
+  const {
+    resList,
+    setResList,
+    filteredList,
+    setFilteredList,
+    searchText,
+    setSearchText,
+  } = useRestuarantList();
 
-  const [filteredList, setFilteredList] = useState([]);
+  const onlineStatus = useOnlineStatus();
 
-  const [searchText, setSearchText] = useState("def");
-
-  console.log("Component Renderdd");
-  //const resList = [];
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.87560&lng=80.91150&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-    setResList(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    );
-    setFilteredList(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    );
-  };
-
+  console.log(onlineStatus);
   // Conditional Rendering
   if (filteredList.length === 0) {
     return <Shimmer></Shimmer>;
+  }
+
+  if (!onlineStatus) {
+    return (
+      <h1>Sorry but you are offline. Please check your internet connection</h1>
+    );
   }
 
   return (
