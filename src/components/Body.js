@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card, { addPromotedLabel } from "./Card";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestuarantList from "../utils/useRestaurantList";
@@ -16,6 +16,10 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
 
+  const RestaurantCardPromoted = addPromotedLabel(Card);
+
+  console.log("Filtered List", filteredList);
+
   console.log(onlineStatus);
   // Conditional Rendering
   if (filteredList.length === 0) {
@@ -24,15 +28,17 @@ const Body = () => {
 
   if (!onlineStatus) {
     return (
-      <h1>Sorry but you are offline. Please check your internet connection</h1>
+      <h1 className="text-red-400">
+        Sorry but you are offline. Please check your internet connection
+      </h1>
     );
   }
 
   return (
-    <div className="app-body">
-      <div className="filter-container">
+    <div>
+      <div className="flex items-center p-4">
         <input
-          className="search-res"
+          className="border border-gray-300 border-solid h-[100%] p-2"
           type="text"
           defaultValue={searchText}
           onChange={(e) => {
@@ -40,6 +46,7 @@ const Body = () => {
           }}
         />
         <button
+          className="bg-orange-400 text-white px-4 py-2 mx-4 rounded-lg"
           onClick={() => {
             const filteredList = resList.filter((res) => {
               console.log(res.info.name);
@@ -51,7 +58,7 @@ const Body = () => {
           Search
         </button>
         <button
-          className="highest-rated-btn"
+          className="bg-gray-100 px-4 py-2 rounded-lg"
           onClick={() => {
             const filteredList = resList.filter(
               (res) => res.info.avgRating >= 4.3
@@ -63,15 +70,21 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredList.map((restaurant) => {
           return (
             <Link
-              className="cardsLink"
+              className="w-[25%] p-4"
               to={"/restaurants/" + restaurant.info.id}
               key={restaurant.info.id}
             >
-              <Card resData={restaurant} />;
+              {restaurant.info.avgRating >= 4.4 ? (
+                <RestaurantCardPromoted
+                  resData={restaurant}
+                ></RestaurantCardPromoted>
+              ) : (
+                <Card resData={restaurant} />
+              )}
             </Link>
           );
         })}

@@ -18,7 +18,7 @@ const RestaurantMenu = () => {
   const { title, itemCards } =
     menu.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
   return (
-    <div className="resMenu">
+    <div className="">
       <h2>{name}</h2>
       <h4>{city}</h4>
       <p>{cuisines.join(", ")}</p>

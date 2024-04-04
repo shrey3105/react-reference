@@ -4,7 +4,7 @@ const useRestuarantList = () => {
 
   const [filteredList, setFilteredList] = useState([]);
 
-  const [searchText, setSearchText] = useState("def");
+  const [searchText, setSearchText] = useState("Seach your cravings here");
 
   useEffect(() => {
     fetchData();
